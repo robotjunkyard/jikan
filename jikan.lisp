@@ -44,7 +44,7 @@
   "Array of random happy-faces printed when user answers correctly.")
 
 (defun hour-to-nihongo (hour)
-  (declare (type (integer 1 24)))
+  (declare (type (integer 1 24) hour))
   (aref #("いちじ"
 	  "にじ"
 	  "さんじ"
@@ -60,19 +60,19 @@
 	(mod (1- hour) 12)))
 
 (defun single-time-digit-to-nihongo (digit)
+  "Spell out rightmost digit."
   (declare (type (integer 0 10) digit))
-  (if (= 0 digit)
-      ""
-      (aref #("いっぷん"
-	      "にふん"
-	      "さんぷん"
-	      "よんぷん"
-	      "ごふん"
-	      "ろっぷん"
-	      "ななふん"
-	      "はっぷん"
-	      "きゅうふん")
-	    (1- digit))))
+  (aref #(""
+	  "いっぷん"
+	  "にふん"
+	  "さんぷん"
+	  "よんぷん"
+	  "ごふん"
+	  "ろっぷん"
+	  "ななふん"
+	  "はっぷん"
+	  "きゅうふん")
+	digit))
 
 (defun minute-to-nihongo (minute)
   (declare (type (integer 0 59) minute))
@@ -134,9 +134,9 @@
        (format t "...~%You answered ~a correctly.~&"
 	       answered-correctly)))
 
-(format t "~%--------------------------------~%")
+(format t "~%----------------------------------------------~%")
 (format t "こんにちは！　jikan.lispがよみこみました。~%~%")
-(format t "Run (quiz-time!) to quiz yourself 10 questions.~%")
+(format t "Type (quiz-time!) to quiz yourself 10 questions.~%~%")
 (format t "(quiz-time! also accepts an optional number~%")
-(format t " parameter if you want a different amount than 10.~%")
-(format t "--------------------------------~%~%")
+(format t " parameter if you want another amount than 10)~%")
+(format t "------------------------------------------------~%~%")
